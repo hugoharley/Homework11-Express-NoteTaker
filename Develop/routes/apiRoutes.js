@@ -6,7 +6,7 @@
 var fs = require('fs');
 var path = require("path");
 let database = require("../db/db.json");
-let noteID = 0;
+var noteID = 0;
 
 module.exports = function (app) {
 
@@ -32,12 +32,18 @@ module.exports = function (app) {
 
     app.delete("/api/notes/:id", function (req, res) {
         let noteDelete = req.params.id;
+        console.log(noteDelete)
         for (let i = 0; i < database.length; i++) {
             let del = database[i];
-            if (del.id == noteDelete) {
+            if (del.id === noteDelete) {
                 database.splice(i);
                 res.json(true)
             }
         }
     });
 };
+
+//console.log(noteData);
+/*app.get('api/notes', function (req,res){
+    res.status(200).json(noteData);
+});*/
